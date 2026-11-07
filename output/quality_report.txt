@@ -1,0 +1,44 @@
+Data quality report
+Source file: data/listings.csv.gz
+Rows loaded: 27232
+Rows kept: 24550 (90.2%)
+Rows rejected: 2682 (9.8%), see rejected_rows.csv
+
+Why rows were rejected (first rule broken, one count per row):
+reason
+price: missing (empty in the raw file)                  2679
+price: Input should be less than or equal to 1000000       3
+
+Fixes made without rejecting the row:
+  bedrooms outside 0 to 50 set to empty: 0
+  beds outside 0 to 50 set to empty: 6
+  price outliers flagged, not removed (below 417 or above 37765): 488
+
+Share of empty values before cleaning (raw file):
+id                        0.000
+neighbourhood_cleansed    0.000
+room_type                 0.000
+price                     0.098
+accommodates              0.000
+bedrooms                  0.001
+beds                      0.015
+latitude                  0.000
+longitude                 0.000
+review_scores_rating      0.355
+amenities                 0.000
+
+Share of empty values after cleaning (kept rows):
+neighbourhood    0.000
+price            0.000
+accommodates     0.000
+bedrooms         0.001
+beds             0.014
+latitude         0.000
+longitude        0.000
+review_score     0.338
+
+Neighbourhood names mapped to proper Turkish spelling: 27232 rows
+Every neighbourhood name was found in the district list.
+
+Limits: the rules (price range, Istanbul bounding box, room types) are my own choices. A rejected row is not
+necessarily wrong data, it only broke a rule. The district list covers the Istanbul districts I know of.
